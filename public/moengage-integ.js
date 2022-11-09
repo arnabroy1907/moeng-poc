@@ -43,7 +43,7 @@
     'https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js', 'Moengage')
 Moengage = moe({
     app_id: "U872ID73BLQ00N72KLXZP8YO",
-    debug_logs: 1,
+    debug_logs: 0,
     enableSPA: true,
     cards: {
         enable: true,
