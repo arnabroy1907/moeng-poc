@@ -26,11 +26,15 @@ export const loginMoengageSession = async (user: User): Promise<boolean> => {
     });
 };
 
-export const logoutMoengageSession = () => {
-    try {
-        console.log('destroy_session called');
-        Moengage.destroy_session();
-    } catch (err) {
-        console.error('logoutMoengageSession Error', err);
-    }
+export const logoutMoengageSession = async () => {
+    return new Promise<boolean>(async (resolve) => {
+        try {
+            console.log('destroy_session called');
+            await Moengage.destroy_session();
+            resolve(true);
+        } catch (err) {
+            console.error('logoutMoengageSession Error', err);
+            resolve(false);
+        }
+    });
 }

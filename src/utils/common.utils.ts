@@ -61,6 +61,8 @@ export const authorize = async (): Promise<User> => {
 
         const user = createDummyUser(email, id);
 
+        await loginMoengageSession(user);
+
         return user;
     } catch (err) {
         console.error(err);
