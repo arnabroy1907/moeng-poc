@@ -9,22 +9,4 @@
       placeholder: '#cardIcon' // CSS selector of inbox icon 
     } 
   });
-
-  var userDataStr = window.localStorage.getItem('moeng_poc_user_data');
-  if (!userDataStr) {
-    console.log('Moengange logged in as guest user');
-  } else {
-    var userData = JSON.parse(userDataStr);
-
-    console.log(`Logging in moengage user ${userData.email} || ${userData.id} `);
-
-    Moengage.add_unique_user_id(userData.id);
-    Moengage.add_email(userData.email);
-    Moengage.add_user_name(userData.email);
-    Moengage.add_first_name(userData.firstName);
-    Moengage.add_last_name(userData.lastName);
-    Moengage.add_mobile(userData.phone);
-    Moengage.add_user_attribute('user-type', userData.userType);
-
-    console.log(`Successfully logged in moengage user ${userData.email} || ${userData.id} `);
-  }
+  
