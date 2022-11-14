@@ -129,6 +129,7 @@ export const LoginPage = (props: LoginPageProps) => {
     const [error, setError] = useState<string>('');
 
     const submitForm = async (e: FormEvent) => {
+        console.log(e);
         e.preventDefault();
         try {
             setError('');
@@ -138,9 +139,7 @@ export const LoginPage = (props: LoginPageProps) => {
                 return;
             }
 
-            const user = await loginUser(email, password);
-            props.setUserData(user);
-
+            await loginUser(email, password);
             window.location.reload(); // needed
         } catch (err: any) {
             console.error(err);
