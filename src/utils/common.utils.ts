@@ -39,7 +39,7 @@ export const loginUser = async (email: string, password: string): Promise<User> 
     }
 
     const user = createDummyUser(email);
-    await loginMoengageSession(user);
+    loginMoengageSession(user);
 
     const accessToken = await generateToken(user, tokenExpiration);
     
@@ -61,7 +61,7 @@ export const authorize = async (): Promise<User> => {
 
         const user = createDummyUser(email, id);
 
-        await loginMoengageSession(user);
+        loginMoengageSession(user);
 
         return user;
     } catch (err) {

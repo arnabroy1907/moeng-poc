@@ -140,6 +140,8 @@ export const LoginPage = (props: LoginPageProps) => {
 
             const user = await loginUser(email, password);
             props.setUserData(user);
+
+            window.location.reload(); // needed
         } catch (err: any) {
             console.error(err);
             setError(err.message);

@@ -48,46 +48,5 @@ Moengage = moe({
     cards: {
         enable: true,
         placeholder: '#cardIcon', // CSS selector of inbox icon
-        backgroundColor: '#F6FBFC', // any valid CSS color format
-        overLayColor: 'rgba(0, 0, 0, 0.8)',
-        ctaTextColor: '#06A6B7',
-        cardDismissColor: '#db2828', // any valid CSS color format
-        optionButtonColor: '#C4C4C4', // any valid CSS color format
-        dateTimeColor: '#8E8E8E', // any valid CSS color format
-        unclickedIndicatorColor: 'blue', // any valid CSS color format
-        pinIcon: 'https://app-cdn.moengage.com/sdk/pin-icon.svg', // absolute path to the icon image.
-        refreshIcon: 'https://app-cdn.moengage.com/sdk/refresh-icon.svg', // absolute path to the icon image.
-        navigationBar: {
-            backgroundColor: '#00237C', // any valid CSS color format
-            text: 'Notifications', // string. eg, Notifications
-            color: '#fff', // any valid CSS color format
-            fontSize: '16px', // any valid CSS size format
-            fontFamily: '', // any font family which is added to the website
-        },
-        closeButton: {
-            webIcon: 'https://app-cdn.moengage.com/sdk/cross-icon.svg',
-            mWebIcon: 'https://app-cdn.moengage.com/sdk/cross-icon.svg',
-        },
-        tab: {
-            active: {
-                color: '#06A6B7',
-                underlineColor: '#06A6B7',
-            },
-            inactiveTabColor: '#7C7C7C',
-            fontSize: '14px', // any valid CSS size format
-            fontFamily: '', // any font family which is added to the website
-            backgroundColor: '#fff', // any valid CSS color format
-        },
-        floating: {
-            enable: false, // false by default
-            icon: 'https://app-cdn.moengage.com/sdk/bell-icon.svg', // absolute path to the icon image. by default, our icon will be used.
-            postion: '0px 10px 40px 0', // need all 4 offset in proper CSS format in the order of top, right, bottom, left.
-            countBackgroundColor: '#FF5A5F',
-            countColor: '#FFF',
-        },
-        noDataContent: {
-            img: `https://app-cdn.moengage.com/sdk/cards-no-result.svg`,
-            text: `No notifications to show, check again later.`,
-        }
     }
 });
