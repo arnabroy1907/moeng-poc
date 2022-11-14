@@ -1,11 +1,12 @@
 import { v5 as uuidV5 } from 'uuid';
 import { User, AuthError } from '../types';
 import { generateToken, verifyAndDecodeToken } from './jwt.utils';
-import { loginMoengageSession, logoutMoengageSession } from './moeng.utils';
+import { logoutMoengageSession } from './moeng.utils';
 
 const tokenExpiration = 12 * 60 * 60;
 
 const authTokenKeyName = 'moeng_poc_access_token';
+const userKeyName = 'moeng_poc_user_data';
 
 const validEmailContent = 'moengpoc';
 const validPasswordSet = ['MoengPoc#1022'];
@@ -39,7 +40,8 @@ export const loginUser = async (email: string, password: string): Promise<User> 
     }
 
     const user = createDummyUser(email);
-    loginMoengageSession(user);
+    window.localStorage.setItem(userKeyName, JSON.stringify(user));
+    // loginMoengageSession(user);
 
     const accessToken = await generateToken(user, tokenExpiration);
     
@@ -61,7 +63,7 @@ export const authorize = async (): Promise<User> => {
 
         const user = createDummyUser(email, id);
 
-        loginMoengageSession(user);
+        // loginMoengageSession(user);
 
         return user;
     } catch (err) {
