@@ -1,7 +1,7 @@
 import { v5 as uuidV5 } from 'uuid';
 import { User, AuthError } from '../types';
 import { generateToken, verifyAndDecodeToken } from './jwt.utils';
-import { logoutMoengageSession } from './moeng.utils';
+import { loginMoengageSession, logoutMoengageSession } from './moeng.utils';
 
 const tokenExpiration = 12 * 60 * 60;
 
@@ -41,7 +41,7 @@ export const loginUser = async (email: string, password: string): Promise<User> 
 
     const user = createDummyUser(email);
     window.localStorage.setItem(userKeyName, JSON.stringify(user));
-    // loginMoengageSession(user);
+    loginMoengageSession(user);
 
     const accessToken = await generateToken(user, tokenExpiration);
     
@@ -63,7 +63,7 @@ export const authorize = async (): Promise<User> => {
 
         const user = createDummyUser(email, id);
 
-        // loginMoengageSession(user);
+        loginMoengageSession(user);
 
         return user;
     } catch (err) {
