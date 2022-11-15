@@ -21,7 +21,7 @@ const LoginPageWrapper = st.div`
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
-  console.log('version 1.0.11');
+  console.log('version 1.0.12');
 
   useEffect(() => {
     const doAuthFlow = async () => {
