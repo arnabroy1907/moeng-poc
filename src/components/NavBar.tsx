@@ -57,7 +57,23 @@ export const NavBar = (props: NavBarProps) => {
                 </NavBarLogo>
                 <NavBarOptions></NavBarOptions>
             </NavBarContent>
-            <NavBarLogout id='cardIcon' hidden={!props.isLoggedIn}>
+            <NavBarLogout
+                id='cardIcon'
+                hidden={!props.isLoggedIn}
+                onClick={() => {
+                    // @ts-ignore
+                    if (window.Moengage) {
+                        // @ts-ignore
+                        const Moengage = window.Moengage;
+
+                        console.log('in inbox click if statement');
+                        Moengage.cards.inboxOpened();
+                        Moengage.cards.getCardCategories().then((cat: any) => {
+                            console.log('cards categories', cat);
+                        });
+                    }
+                }}
+            >
                 <span>Inbox</span>
             </NavBarLogout>
             {props.isLoggedIn && <NavBarLogout>
