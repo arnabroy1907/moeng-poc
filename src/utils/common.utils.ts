@@ -17,17 +17,28 @@ const dummyLasttName = 'POCMoengage';
 const dummyPhoneNumber = '+91-9876543210';
 const dummyUserType = 'moeng-poc';
 
-const createDummyUser = (email: string, id?: string): User => {
+const createDummyUser = (email: string, id?: string): User => {    
     if (!id) id = uuidV5(email, uuidNameSpace);
 
     const nameSuffix = id.split('-')[0];
 
+    // Handle for bulk imported users
+    let phone = dummyPhoneNumber;
+    let firstName = dummyFirstNamePrefix;
+    if (email.includes('uatbulk_ix_')) {
+        const idStr = email.split('uatbulk_ix_')[1].split('@')[0];
+        phone = phone.replace('210', idStr);
+        firstName = `BulkUatUser${idStr}`;
+    } else {
+        firstName = dummyFirstNamePrefix.concat(nameSuffix);
+    }
+
     const user: User = {
         id: id,
         email: email,
-        firstName: dummyFirstNamePrefix.concat(nameSuffix),
+        firstName: firstName,
         lastName: dummyLasttName,
-        phone: dummyPhoneNumber,
+        phone: phone,
         userType: dummyUserType
     };
 

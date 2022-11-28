@@ -21,7 +21,7 @@ const LoginPageWrapper = st.div`
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
-  console.log('version 1.0.13');
+  console.log('version 1.0.14');
 
   useEffect(() => {
     const doAuthFlow = async () => {
@@ -52,7 +52,6 @@ function App() {
           <LoginPage setUserData={(user) => { setUser(user); }} />
         </LoginPageWrapper>
       )}
-      <div id='cardIcon'></div>
     </AppWrapper>
   );
 }
