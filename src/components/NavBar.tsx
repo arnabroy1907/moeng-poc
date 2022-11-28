@@ -57,6 +57,9 @@ export const NavBar = (props: NavBarProps) => {
                 </NavBarLogo>
                 <NavBarOptions></NavBarOptions>
             </NavBarContent>
+            <NavBarLogout id='cardIcon' hidden={!props.isLoggedIn}>
+                <span>Inbox</span>
+            </NavBarLogout>
             {props.isLoggedIn && <NavBarLogout>
                 <span onClick={() => { props.logoutUser(); }}> Logout </span>
             </NavBarLogout>}
