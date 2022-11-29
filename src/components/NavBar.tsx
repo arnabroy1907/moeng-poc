@@ -52,9 +52,11 @@ export const NavBar = (props: NavBarProps) => {
 
     useEffect(() => {
         // @ts-ignore
-        if (window.Moengage) {
+        if (window.Moengage && window.Moengage.cards) {
             // @ts-ignore
             const Moengage = window.Moengage;
+
+            console.log('in navbar use-effect if statement');
 
             Moengage.cards.setInboxOpenListener(() => {
                 console.log('Inbox is opened.');
@@ -83,7 +85,7 @@ export const NavBar = (props: NavBarProps) => {
                 hidden={!props.isLoggedIn}
                 onClick={() => {
                     // @ts-ignore
-                    if (window.Moengage) {
+                    if (window.Moengage && window.Moengage.cards) {
                         // @ts-ignore
                         const Moengage = window.Moengage;
 
