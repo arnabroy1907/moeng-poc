@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import st from 'styled-components';
 
 const NavBarWrapper = st.div`
@@ -50,27 +50,25 @@ type NavBarProps = {
 
 export const NavBar = (props: NavBarProps) => {
 
-    useEffect(() => {
+    // @ts-ignore
+    if (window.Moengage && window.Moengage.cards) {
         // @ts-ignore
-        if (window.Moengage && window.Moengage.cards) {
-            // @ts-ignore
-            const Moengage = window.Moengage;
+        const Moengage = window.Moengage;
 
-            console.log('in navbar use-effect if statement');
+        console.log('in navbar use-effect if statement');
 
-            Moengage.cards.setInboxOpenListener(() => {
-                console.log('Inbox is opened.');
-            });
+        Moengage.cards.setInboxOpenListener(() => {
+            console.log('Inbox is opened.');
+        });
 
-            Moengage.cards.setInboxCloseListener(() => {
-                console.log('Inbox is closed.')
-            });
+        Moengage.cards.setInboxCloseListener(() => {
+            console.log('Inbox is closed.')
+        });
 
-            Moengage.cards.setCardClickListener((cardId: any) => {
-                console.log('Card clicked: ', cardId)
-            });
-        }
-    }, [])
+        Moengage.cards.setCardClickListener((cardId: any) => {
+            console.log('Card clicked: ', cardId)
+        });
+    }
 
     return (
         <NavBarWrapper>
@@ -85,17 +83,28 @@ export const NavBar = (props: NavBarProps) => {
                 hidden={!props.isLoggedIn}
                 onClick={() => {
                     // @ts-ignore
-                    if (window.Moengage && window.Moengage.cards) {
+                    if (window.Moengage) {
                         // @ts-ignore
                         const Moengage = window.Moengage;
 
                         console.log('in inbox click if statement');
-                        Moengage.cards.getNewCardCount().then((newCardCount: any) => {
-                            console.log(newCardCount); // newCardCount is in Number format
+
+                        Moengage.cards.setInboxOpenListener(() => {
+                            console.log('Inbox onClick is opened.');
                         });
-                        // Moengage.cards.inboxOpened();
+                
+                        Moengage.cards.setInboxCloseListener(() => {
+                            console.log('Inbox onClick is closed.')
+                        });
+                
+                        Moengage.cards.setCardClickListener((cardId: any) => {
+                            console.log('Card onClick clicked: ', cardId)
+                        });
+                        
+                        Moengage.cards.inboxOpened();
+                        
                         Moengage.cards.getNewCardCount().then((newCardCount: any) => {
-                            console.log(newCardCount); // newCardCount is in Number format
+                            console.log('getNewCardCount ', newCardCount); // newCardCount is in Number format
                         });
                         Moengage.cards.getCardCategories().then((cat: any) => {
                             console.log('getCardCategories ', cat);
