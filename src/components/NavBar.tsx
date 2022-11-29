@@ -112,11 +112,52 @@ export const NavBar = (props: NavBarProps) => {
                         });
                         Moengage.cards.isAllCategoryEnabled().then(function(enabled: any) {
                             console.log('isAllCategoryEnabled ', enabled); // boolean
-                        })
+                        });
+                        Moengage.cards.getCardsForCategory('All').then(function(cards: any) {
+                            console.log('getCardsForCategory ', cards); // list of cards
+                        });
                     }
                 }}
             >
-                <span>Inbox</span>
+                <span
+                    onClick={() => {
+                        console.log('Card icon span clicked ', window);
+                        // @ts-ignore
+                        if (window.Moengage) {
+                            // @ts-ignore
+                            const Moengage = window.Moengage;
+    
+                            console.log('span - in inbox click if statement');
+    
+                            Moengage.cards.setInboxOpenListener(() => {
+                                console.log('span - Inbox onClick is opened.');
+                            });
+                    
+                            Moengage.cards.setInboxCloseListener(() => {
+                                console.log('span - Inbox onClick is closed.')
+                            });
+                    
+                            Moengage.cards.setCardClickListener((cardId: any) => {
+                                console.log('span - Card onClick clicked: ', cardId)
+                            });
+                            
+                            Moengage.cards.inboxOpened();
+                            
+                            Moengage.cards.getNewCardCount().then((newCardCount: any) => {
+                                console.log('span - getNewCardCount ', newCardCount); // newCardCount is in Number format
+                            });
+                            Moengage.cards.getCardCategories().then((cat: any) => {
+                                console.log('span - getCardCategories ', cat);
+                            });
+                            Moengage.cards.isAllCategoryEnabled().then(function(enabled: any) {
+                                console.log('span - isAllCategoryEnabled ', enabled); // boolean
+                            });
+                            Moengage.cards.getCardsForCategory('All').then(function(cards: any) {
+                                console.log('span - getCardsForCategory ', cards); // list of cards
+                            });
+                        }
+                    }}
+                >Inbox</span>
             </NavBarLogout>
             {props.isLoggedIn && <NavBarLogout>
                 <span onClick={() => { props.logoutUser(); }}> Logout </span>
