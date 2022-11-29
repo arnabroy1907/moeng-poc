@@ -82,6 +82,7 @@ export const NavBar = (props: NavBarProps) => {
                 id='cardIcon'
                 hidden={!props.isLoggedIn}
                 onClick={() => {
+                    console.log('Card icon clicked ', window);
                     // @ts-ignore
                     if (window.Moengage) {
                         // @ts-ignore
