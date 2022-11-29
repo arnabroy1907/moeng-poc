@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import st from 'styled-components';
 
 const NavBarWrapper = st.div`
@@ -49,6 +49,27 @@ type NavBarProps = {
 }
 
 export const NavBar = (props: NavBarProps) => {
+
+    useEffect(() => {
+        // @ts-ignore
+        if (window.Moengage) {
+            // @ts-ignore
+            const Moengage = window.Moengage;
+
+            Moengage.cards.setInboxOpenListener(() => {
+                console.log('Inbox is opened.');
+            });
+
+            Moengage.cards.setInboxCloseListener(() => {
+                console.log('Inbox is closed.')
+            });
+
+            Moengage.cards.setCardClickListener((cardId: any) => {
+                console.log('Card clicked: ', cardId)
+            });
+        }
+    }, [])
+
     return (
         <NavBarWrapper>
             <NavBarContent>
@@ -67,10 +88,19 @@ export const NavBar = (props: NavBarProps) => {
                         const Moengage = window.Moengage;
 
                         console.log('in inbox click if statement');
-                        Moengage.cards.inboxOpened();
-                        Moengage.cards.getCardCategories().then((cat: any) => {
-                            console.log('cards categories', cat);
+                        Moengage.cards.getNewCardCount().then((newCardCount: any) => {
+                            console.log(newCardCount); // newCardCount is in Number format
                         });
+                        // Moengage.cards.inboxOpened();
+                        Moengage.cards.getNewCardCount().then((newCardCount: any) => {
+                            console.log(newCardCount); // newCardCount is in Number format
+                        });
+                        Moengage.cards.getCardCategories().then((cat: any) => {
+                            console.log('getCardCategories ', cat);
+                        });
+                        Moengage.cards.isAllCategoryEnabled().then(function(enabled: any) {
+                            console.log('isAllCategoryEnabled ', enabled); // boolean
+                        })
                     }
                 }}
             >
